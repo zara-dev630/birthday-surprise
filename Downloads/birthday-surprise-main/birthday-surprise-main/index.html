@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Countdown for Laraib</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Pacifico&display=swap');
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(270deg, #ff7eb3, #65c7f7, #0052d4);
+  background-size: 600% 600%;
+  animation: gradientMove 15s ease infinite;
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
+  padding: 10px;
+}
+
+@keyframes gradientMove {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #ffb347, 0 0 20px #ffb347;
+}
+
+p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-bottom: 20px;
+  font-family: 'Pacifico', cursive;
+  color: #fffbe7;
+  text-shadow: 0 0 6px #ffafbd;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: #ffe6f7;
+  font-weight: bold;
+  text-shadow: 0 0 12px #ff4d6d;
+}
+
+.countdown {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tile {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
+}
+
+.label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 80px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--color));
+  animation: float 12s linear infinite;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-300px) rotate(3deg); }
+  100% { transform: translateY(-600px) rotate(-3deg); }
+}
+
+.balloon1 { left: 10%; --color:#ff4d6d; animation-delay:0s; }
+.balloon2 { left: 20%; --color:#ffb347; animation-delay:3s; }
+.balloon3 { right: 15%; --color:#65c7f7; animation-delay:6s; }
+.balloon4 { right: 25%; --color:#7aff7a; animation-delay:9s; }
+
+.gift-box {
+  width: 120px;
+  height: 120px;
+  background: #ff4d6d;
+  position: relative;
+  margin-top: 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.gift-box:hover { transform: scale(1.05); }
+.gift-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 25px; height: 120px;
+  background: #fff;
+}
+.gift-box::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 0;
+  width: 120px; height: 25px;
+  background: #fff;
+  transform: translateY(-50%);
+}
+.lid {
+  width: 130px; height: 35px;
+  background: #ff4d6d;
+  position: absolute;
+  top: -35px; left: -5px;
+  border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+.surprise-message {
+  display: none;
+  margin-top: 15px;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: #ffe6f7;
+  text-shadow: 0 0 10px #ffb347, 0 0 20px #ff4d6d;
+}
+
+.float-emoji {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUp 3s linear forwards;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
+
+</style>
+<body>
+<h1>🎉 Birthday Countdown for Laraib 🎂</h1>
+<p>
+💻 POV: It’s my best friend <span class="highlight">Laraib’s</span> birthday but I’m a Software Engineer… <br><br>
+• Instead of blowing candles 🕯️ → I light up screens with code. <br>
+• Instead of wrapping gifts 🎁 → I wrap functions. <br>
+• Instead of wishes ✨ → I wrote a loop that says <span class="highlight">Happy Birthday Laraib</span> forever ♾️. <br><br>
+A future doctor 👩‍⚕️ + a forever friend 💖 = the most special person to celebrate! 🎂✨
+</p>
+
+<div class="countdown">
+<div class="tile"><span id="days" class="number">0</span><div class="label">Days</div></div>
+<div class="tile"><span id="hours" class="number">0</span><div class="label">Hours</div></div>
+<div class="tile"><span id="minutes" class="number">0</span><div class="label">Minutes</div></div>
+<div class="tile"><span id="seconds" class="number">0</span><div class="label">Seconds</div></div>
+</div>
+
+<div class="gift-box" id="giftBox">
+<div class="lid" id="lid"></div>
+</div>
+<div class="surprise-message" id="surpriseMessage">💖 Made with infinite loops of love by Zara 💻</div>
+
+<div class="balloon balloon1"></div>
+<div class="balloon balloon2"></div>
+<div class="balloon balloon3"></div>
+<div class="balloon balloon4"></div>
+
+<canvas id="confetti"></canvas>
+<canvas id="fireworks"></canvas>
+
+<audio id="birthdayMusic">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Countdown
+const target = new Date('2025-10-23T00:00:00+05:00');
+const elDays = document.getElementById('days');
+const elHours = document.getElementById('hours');
+const elMinutes = document.getElementById('minutes');
+const elSeconds = document.getElementById('seconds');
+function updateCountdown(){
+  const now = new Date();
+  let diff = Math.floor((target-now)/1000);
+  if(diff<=0){
+    elDays.textContent=elHours.textContent=elMinutes.textContent=elSeconds.textContent="00";
+    clearInterval(timer);
+    return;
+  }
+  const days=Math.floor(diff/86400); diff-=days*86400;
+  const hours=Math.floor(diff/3600); diff-=hours*3600;
+  const minutes=Math.floor(diff/60);
+  const seconds=diff-minutes*60;
+  elDays.textContent=days;
+  elHours.textContent=hours.toString().padStart(2,'0');
+  elMinutes.textContent=minutes.toString().padStart(2,'0');
+  elSeconds.textContent=seconds.toString().padStart(2,'0');
+}
+const timer=setInterval(updateCountdown,1000);
+updateCountdown();
+
+// Canvas setup
+const canvas=document.getElementById('confetti');
+const ctx=canvas.getContext('2d');
+const fireworksCanvas=document.getElementById('fireworks');
+const fctx=fireworksCanvas.getContext('2d');
+let confettis=[],fireworks=[];
+
+function resize(){
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  fireworksCanvas.width=window.innerWidth; fireworksCanvas.height=window.innerHeight;
+}
+window.addEventListener('resize',resize);
+resize();
+
+// Confetti
+function startConfetti(){
+  confettis=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height-canvas.height,
+    w:8,h:14,
+    color:`hsl(${Math.random()*360},100%,50%)`,
+    speed:Math.random()*3+2
+  }));
+  requestAnimationFrame(renderConfetti);
+}
+function renderConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettis.forEach(c=>{
+    ctx.fillStyle=c.color;
+    ctx.fillRect(c.x,c.y,c.w,c.h);
+    c.y+=c.speed;
+    if(c.y>canvas.height)c.y=-20;
+  });
+  requestAnimationFrame(renderConfetti);
+}
+
+// Fireworks
+class Firework{
+  constructor(x,y,color,sizeMultiplier=1,speedMultiplier=1){
+    this.particles=Array.from({length:50},()=>{
+      const angle=Math.random()*2*Math.PI;
+      return {
+        x:x, y:y,
+        angle:angle,
+        speed:(Math.random()*4+2)*speedMultiplier,
+        alpha:1,
+        color:color,
+        size:(Math.random()*2+2)*sizeMultiplier
+      }
+    });
+  }
+  update(){ this.particles.forEach(p=>{
+    p.x+=Math.cos(p.angle)*p.speed;
+    p.y+=Math.sin(p.angle)*p.speed;
+    p.alpha-=0.02;
+  })}
+  draw(){ this.particles.forEach(p=>{
+    fctx.fillStyle=`rgba(${p.color},${p.alpha})`;
+    fctx.fillRect(p.x,p.y,p.size,p.size);
+  })}
+}
+
+function animateFireworks(){
+  fctx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+  fireworks.forEach((fw,i)=>{
+    fw.update(); fw.draw();
+    if(fw.particles[0].alpha<=0) fireworks.splice(i,1);
+  });
+  requestAnimationFrame(animateFireworks);
+}
+
+function startFireworks(){
+  let speedMultiplier=0.5, sizeMultiplier=1;
+  const interval=setInterval(()=>{
+    const bursts=Math.floor(Math.random()*3)+1;
+    for(let b=0;b<bursts;b++){
+      const x=Math.random()*fireworksCanvas.width;
+      const y=Math.random()*fireworksCanvas.height/2;
+      const color=`${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)}`;
+      fireworks.push(new Firework(x,y,color,sizeMultiplier,speedMultiplier));
+    }
+    if(speedMultiplier<3)speedMultiplier+=0.05;
+    if(sizeMultiplier<2)sizeMultiplier+=0.02;
+  },400);
+  animateFireworks();
+}
+
+// Gift box click
+const giftBox=document.getElementById("giftBox");
+const lid=document.getElementById("lid");
+const surpriseMessage=document.getElementById("surpriseMessage");
+const music=document.getElementById("birthdayMusic");
+
+giftBox.addEventListener("click",()=>{
+  lid.style.transform="rotate(-25deg) translateY(-50px)";
+  surpriseMessage.style.display="block";
+  music.play();
+  startConfetti();
+  startFireworks();
+
+  const emojis=["❤️","🎂","🎁","💖","✨"];
+  for(let i=0;i<25;i++){
+    let span=document.createElement("span");
+    span.className="float-emoji";
+    span.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.left=(giftBox.offsetLeft+40+Math.random()*60)+"px";
+    span.style.top=(giftBox.offsetTop+20)+"px";
+    span.style.animationDelay=(i*0.1)+"s";
+    document.body.appendChild(span);
+    setTimeout(()=>span.remove(),3000);
+  }
+});
+</script>
+</body>
+</html>
