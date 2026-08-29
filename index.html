@@ -49,11 +49,16 @@ h1 {
 p {
   font-size: 1.1rem;
   max-width: 700px;
+  width: 100%;
   margin-bottom: 20px;
+  padding: 0 20px;
   font-family: 'Pacifico', cursive;
   color: #fffbe7;
   text-shadow: 0 0 6px #ffafbd;
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .highlight {
@@ -68,6 +73,9 @@ p {
   margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .tile {
@@ -75,7 +83,10 @@ p {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  min-width: 100px;
+  min-width: 0;
+  flex: 1 1 100px;
+  max-width: 100%;
+  box-sizing: border-box;
   box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
@@ -84,13 +95,16 @@ p {
   font-weight: bold;
   color: #fff;
   text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .label {
   font-size: 0.9rem;
   opacity: 0.8;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
-
 canvas {
   position: absolute;
   top: 0; left: 0;
@@ -186,6 +200,58 @@ canvas {
 @keyframes floatUp {
   0% { transform: translateY(0) scale(1); opacity: 1; }
   100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 16px 0;
+  }
+  h1 {
+    font-size: 1.5rem;
+    padding: 0 16px;
+  }
+  p {
+    font-size: 0.95rem;
+    padding: 0 20px;
+  }
+  .number {
+    font-size: 1.5rem;
+  }
+  .tile {
+    padding: 14px;
+    flex-basis: 45%;
+  }
+  .countdown {
+    gap: 10px;
+    padding: 0 20px;
+  }
+  .gift-box {
+    width: 105px;
+    height: 105px;
+  }
+  .gift-box::before {
+    height: 105px;
+  }
+  .gift-box::after {
+    width: 105px;
+  }
+  .lid {
+    width: 115px;
+  }
+  .balloon {
+    width: 45px;
+    height: 56px;
+  }
+  .balloon::after {
+    bottom: -30px;
+    height: 30px;
+    width: 2px;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-160px) rotate(3deg); }
+    100% { transform: translateY(-320px) rotate(-3deg); }
+  }
 }
 
 </style>
