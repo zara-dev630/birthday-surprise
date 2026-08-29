@@ -482,7 +482,7 @@ giftBox.addEventListener("click",()=>{
     span.style.left=(giftBox.offsetLeft+40+Math.random()*60)+"px";
     span.style.top=(giftBox.offsetTop+20)+"px";
     span.style.animationDelay=(i*0.1)+"s";
-    document.body.appendChild(span);
+    document.querySelector('.gift-section').appendChild(span);
     setTimeout(()=>span.remove(),3000);
   }
 });
