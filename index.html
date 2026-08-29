@@ -2,26 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Birthday Countdown for Laraib</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Pacifico&display=swap');
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   font-family: 'Orbitron', sans-serif;
   background: linear-gradient(270deg, #ff7eb3, #65c7f7, #0052d4);
   background-size: 600% 600%;
   animation: gradientMove 15s ease infinite;
   color: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
   text-align: center;
-  padding: 10px;
+}
+
+.content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes gradientMove {
@@ -87,6 +96,7 @@ canvas {
   top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
+  z-index: 0;
 }
 
 .balloon {
@@ -97,6 +107,8 @@ canvas {
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #fff, var(--color));
   animation: float 12s linear infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .balloon::after {
@@ -178,6 +190,7 @@ canvas {
 
 </style>
 <body>
+<div class="content">
 <h1>🎉 Birthday Countdown for Laraib 🎂</h1>
 <p>
 💻 POV: It’s my best friend <span class="highlight">Laraib’s</span> birthday but I’m a Software Engineer… <br><br>
@@ -198,6 +211,7 @@ A future doctor 👩‍⚕️ + a forever friend 💖 = the most special person 
 <div class="lid" id="lid"></div>
 </div>
 <div class="surprise-message" id="surpriseMessage">💖 Made with infinite loops of love by Zara 💻</div>
+</div>
 
 <div class="balloon balloon1"></div>
 <div class="balloon balloon2"></div>
@@ -213,7 +227,7 @@ A future doctor 👩‍⚕️ + a forever friend 💖 = the most special person 
 
 <script>
 // Countdown
-const target = new Date('2025-10-23T00:00:00+05:00');
+const target = new Date('2026-10-23T00:00:00+05:00');
 const elDays = document.getElementById('days');
 const elHours = document.getElementById('hours');
 const elMinutes = document.getElementById('minutes');
