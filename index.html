@@ -94,12 +94,13 @@ p {
   position: static;
   margin: 0;
   bottom: auto;
-  animation: floatSide 10s ease-in-out infinite;
+  animation: floatSide 3s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
 @keyframes floatSide {
   0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-25px) rotate(3deg); }
+  50% { transform: translateY(-30px) rotate(3deg); }
 }
 
 .tile {
@@ -187,7 +188,7 @@ canvas {
   position: static;
   margin: 0;
   bottom: auto;
-  animation: floatSide 10s ease-in-out infinite;
+  animation: floatSide 2.5s ease-in-out infinite;
   transform-origin: bottom center;
 }
 
