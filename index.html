@@ -90,6 +90,18 @@ p {
   box-sizing: border-box;
 }
 
+.countdown-row .balloon {
+  position: static;
+  margin: 0;
+  bottom: auto;
+  animation: floatSide 9s linear infinite;
+}
+
+@keyframes floatSide {
+  0%   { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-100vh) rotate(-3deg); }
+}
+
 .tile {
   background: rgba(255,255,255,0.1);
   padding: 20px;
@@ -126,13 +138,15 @@ canvas {
 }
 
 .balloon {
-  position: fixed;
-  bottom: -160px;
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  margin-left: -40px;
   width: 80px;
   height: 100px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #fff, var(--color));
-  animation: floatUp 11s linear infinite;
+  animation: float 12s linear infinite;
   z-index: 0;
   pointer-events: none;
 }
@@ -148,10 +162,10 @@ canvas {
   transform: translateX(-50%);
 }
 
-@keyframes floatUp {
-  0%   { transform: translateY(0) rotate(0deg); }
-  50%  { transform: translateY(-70vh) rotate(3deg); }
-  100% { transform: translateY(-145vh) rotate(-3deg); }
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-300px) rotate(3deg); }
+  100% { transform: translateY(-600px) rotate(-3deg); }
 }
 
 .balloon1 { left: 8%; --color:#ff4d6d; animation-delay:0s; }
@@ -167,6 +181,14 @@ canvas {
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+}
+
+.gift-section .balloon {
+  position: static;
+  margin: 0;
+  bottom: auto;
+  animation: floatSide 9s linear infinite;
+  transform-origin: bottom center;
 }
 
 .gift-box {
@@ -251,6 +273,11 @@ canvas {
   .gift-section {
     gap: 10px;
   }
+  .countdown-row .balloon,
+  .gift-section .balloon {
+    width: 30px;
+    height: 37px;
+  }
   .gift-box {
     width: 105px;
     height: 105px;
@@ -267,17 +294,16 @@ canvas {
   .balloon {
     width: 45px;
     height: 56px;
-    bottom: -90px;
   }
   .balloon::after {
     bottom: -30px;
     height: 30px;
     width: 2px;
   }
-  @keyframes floatUp {
-    0%   { transform: translateY(0) rotate(0); }
-    50%  { transform: translateY(-70vh) rotate(3deg); }
-    100% { transform: translateY(-145vh) rotate(-3deg); }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-160px) rotate(3deg); }
+    100% { transform: translateY(-320px) rotate(-3deg); }
   }
 }
 
@@ -294,26 +320,25 @@ A future doctor 👩‍⚕️ + a forever friend 💖 = the most special person 
 </p>
 
 <div class="countdown-row">
+<div class="balloon balloon1"></div>
 <div class="countdown">
 <div class="tile"><span id="days" class="number">0</span><div class="label">Days</div></div>
 <div class="tile"><span id="hours" class="number">0</span><div class="label">Hours</div></div>
 <div class="tile"><span id="minutes" class="number">0</span><div class="label">Minutes</div></div>
 <div class="tile"><span id="seconds" class="number">0</span><div class="label">Seconds</div></div>
 </div>
+<div class="balloon balloon2"></div>
 </div>
 
 <div class="gift-section">
+<div class="balloon balloon3"></div>
 <div class="gift-box" id="giftBox">
 <div class="lid" id="lid"></div>
 </div>
+<div class="balloon balloon4"></div>
 </div>
 <div class="surprise-message" id="surpriseMessage">💖 Made with infinite loops of love by Zara 💻</div>
 </div>
-
-<div class="balloon balloon1"></div>
-<div class="balloon balloon2"></div>
-<div class="balloon balloon3"></div>
-<div class="balloon balloon4"></div>
 
 <canvas id="confetti"></canvas>
 <canvas id="fireworks"></canvas>
