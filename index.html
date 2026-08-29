@@ -26,9 +26,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px 10px;
   text-align: center;
   width: 100%;
+  max-width: 1000px;
   position: relative;
   z-index: 1;
 }
@@ -42,7 +44,7 @@ body {
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin: 0 0 12px 0;
   text-shadow: 0 0 10px #ffb347, 0 0 20px #ffb347;
 }
 
@@ -50,7 +52,7 @@ p {
   font-size: 1.1rem;
   max-width: 700px;
   width: 100%;
-  margin-bottom: 20px;
+  margin: 0 0 24px 0;
   padding: 0 20px;
   font-family: 'Pacifico', cursive;
   color: #fffbe7;
@@ -70,12 +72,34 @@ p {
 .countdown {
   display: flex;
   gap: 15px;
-  margin-bottom: 20px;
+  margin: 0;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
   padding: 0;
+}
+
+.countdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  margin: 0 0 30px 0;
+  box-sizing: border-box;
+}
+
+.countdown-row .balloon {
+  position: static;
+  margin: 0;
+  bottom: auto;
+  animation: floatSide 10s ease-in-out infinite;
+}
+
+@keyframes floatSide {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-25px) rotate(3deg); }
 }
 
 .tile {
@@ -116,6 +140,8 @@ canvas {
 .balloon {
   position: absolute;
   bottom: -150px;
+  left: 50%;
+  margin-left: -40px;
   width: 80px;
   height: 100px;
   border-radius: 50%;
@@ -142,17 +168,35 @@ canvas {
   100% { transform: translateY(-600px) rotate(-3deg); }
 }
 
-.balloon1 { left: 10%; --color:#ff4d6d; animation-delay:0s; }
-.balloon2 { left: 20%; --color:#ffb347; animation-delay:3s; }
-.balloon3 { right: 15%; --color:#65c7f7; animation-delay:6s; }
-.balloon4 { right: 25%; --color:#7aff7a; animation-delay:9s; }
+.balloon1 { left: 8%; --color:#ff4d6d; animation-delay:0s; }
+.balloon2 { left: 14%; --color:#ffb347; animation-delay:3s; }
+.balloon3 { right: 8%; --color:#65c7f7; animation-delay:6s; }
+.balloon4 { right: 14%; --color:#7aff7a; animation-delay:9s; }
+
+.gift-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.gift-section .balloon {
+  position: static;
+  margin: 0;
+  bottom: auto;
+  animation: floatSide 10s ease-in-out infinite;
+  transform-origin: bottom center;
+}
 
 .gift-box {
   width: 120px;
   height: 120px;
   background: #ff4d6d;
   position: relative;
-  margin-top: 25px;
+  margin: 0;
   border-radius: 12px;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
@@ -185,7 +229,7 @@ canvas {
 }
 .surprise-message {
   display: none;
-  margin-top: 15px;
+  margin-top: 20px;
   font-family: 'Pacifico', cursive;
   font-size: 1.5rem;
   color: #ffe6f7;
@@ -224,6 +268,15 @@ canvas {
   .countdown {
     gap: 10px;
     padding: 0 20px;
+  }
+  .countdown-row,
+  .gift-section {
+    gap: 10px;
+  }
+  .countdown-row .balloon,
+  .gift-section .balloon {
+    width: 30px;
+    height: 37px;
   }
   .gift-box {
     width: 105px;
@@ -266,23 +319,26 @@ canvas {
 A future doctor 👩‍⚕️ + a forever friend 💖 = the most special person to celebrate! 🎂✨
 </p>
 
+<div class="countdown-row">
+<div class="balloon balloon1"></div>
 <div class="countdown">
 <div class="tile"><span id="days" class="number">0</span><div class="label">Days</div></div>
 <div class="tile"><span id="hours" class="number">0</span><div class="label">Hours</div></div>
 <div class="tile"><span id="minutes" class="number">0</span><div class="label">Minutes</div></div>
 <div class="tile"><span id="seconds" class="number">0</span><div class="label">Seconds</div></div>
 </div>
+<div class="balloon balloon2"></div>
+</div>
 
+<div class="gift-section">
+<div class="balloon balloon3"></div>
 <div class="gift-box" id="giftBox">
 <div class="lid" id="lid"></div>
 </div>
+<div class="balloon balloon4"></div>
+</div>
 <div class="surprise-message" id="surpriseMessage">💖 Made with infinite loops of love by Zara 💻</div>
 </div>
-
-<div class="balloon balloon1"></div>
-<div class="balloon balloon2"></div>
-<div class="balloon balloon3"></div>
-<div class="balloon balloon4"></div>
 
 <canvas id="confetti"></canvas>
 <canvas id="fireworks"></canvas>
